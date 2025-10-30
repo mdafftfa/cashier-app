@@ -16,7 +16,7 @@ export default class Home extends Component {
                         <Box flexBasis={{ base: "100%", md: "70%" }} w={{ base: "100%", md: "70%" }}>
                             <Product />
                         </Box>
-                        <Box display={"fixed"} flexBasis={{ base: "100%", md: "25%" }} w={{ base: "100%", md: "25%" }}>
+                        <Box display={"fixed"} flexBasis={{ base: "100%", md: "25%" }} w={{ base: "100%", md: "25%" }} position={"static"}>
                             <Cart />
                         </Box>
                     </Flex>
