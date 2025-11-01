@@ -10,3 +10,5 @@ export const categoryPlugin = {
         server.route(routes(controllerInstance));
     },
 };
+
+export default categoryPlugin;

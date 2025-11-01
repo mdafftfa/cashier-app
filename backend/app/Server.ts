@@ -1,7 +1,9 @@
 'use strict';
 
-import {cartPlugin} from "./api/cart";
-import {categoryPlugin} from "./api/category";
+import 'dotenv/config';
+
+import cartPlugin from "./api/cart";
+import categoryPlugin from "./api/category";
 import productPlugin from "./api/product";
 
 const Hapi = require('@hapi/hapi');
@@ -31,6 +33,8 @@ const init = async () => {
         },
     });
 
+    // const prisma = new PrismaClient()
+
     await server.register([
         {
             plugin: cartPlugin,
@@ -50,7 +54,7 @@ const init = async () => {
     ]);
 
     await server.start();
-    console.log('Server running on %s', server.info.uri);
+    console.log('Server is running on %s', server.info.uri);
 };
 
 init();
