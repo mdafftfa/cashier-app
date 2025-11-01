@@ -10,3 +10,5 @@ export const cartPlugin = {
         server.route(routes(controllerInstance));
     },
 };
+
+export default cartPlugin;
