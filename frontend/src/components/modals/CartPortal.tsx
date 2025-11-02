@@ -35,7 +35,6 @@ export default class CartPortal extends Component<CartPortalProps> {
 
     };
 
-
     render() {
         const { product } = this.props;
         if (!product) return null;

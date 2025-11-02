@@ -138,6 +138,7 @@ export default class Cart extends Component<{}, ProductState> {
                 </Card.Footer>
             </Card.Root>
         );
+
     }
 
 }

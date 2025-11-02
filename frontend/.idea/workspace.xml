@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ad9afc5-55f1-4825-a8d7-a30001eeadb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../backend/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/prisma.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/20251101131545_init/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/migration_lock.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/Server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/Server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/cart/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/cart/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/category/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/frontend.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Cart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Category.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modals/CartPortal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modals/CartPortal.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +126,8 @@
       <workItem from="1761984180665" duration="3670000" />
       <workItem from="1761998484660" duration="593000" />
       <workItem from="1761999149658" duration="1167000" />
-      <workItem from="1762000652694" duration="2275000" />
+      <workItem from="1762000652694" duration="2282000" />
+      <workItem from="1762111750156" duration="9296000" />
     </task>
     <servers />
   </component>
