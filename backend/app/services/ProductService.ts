@@ -1,4 +1,15 @@
-class ProductService {
-}
+import { PrismaClient } from "@prisma/client";
 
-module.exports = ProductService;
+export default class ProductService {
+
+    private prisma: PrismaClient;
+
+    constructor() {
+        this.prisma = new PrismaClient();
+    }
+
+    async getAll() {
+        return this.prisma.product.findMany();
+    }
+
+}

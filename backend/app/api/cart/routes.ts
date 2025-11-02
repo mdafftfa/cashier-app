@@ -4,7 +4,7 @@ import Controller from "./controller";
 export const routes = (controllerInstance: Controller): ServerRoute[] => [
     {
         method: 'GET' as const,
-        path: '/cart',
+        path: '/getAllCartData',
         handler: controllerInstance.getAllCartData.bind(controllerInstance),
     },
 ];
