@@ -8,13 +8,14 @@
   "main": "app/Server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx ts-node app/Server.ts"
+    "start": "ts-node -r tsconfig-paths/register app/Server.ts"
   },
   "dependencies": {
     "@hapi/hapi": "^21.4.3",
     "@prisma/client": "^6.18.0",
     "@prisma/extension-accelerate": "^2.0.2",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^24.9.2",

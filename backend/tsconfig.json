@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "baseUrl": "./app",
     "paths": {
       "@api/*": ["api/*"],
       "@services/*": ["services/*"],
-    },
-    "module": "commonjs",
-    "target": "es2020",
-    "esModuleInterop": true
+      "@validators/*": ["validators/*"]
+    }
   }
 }

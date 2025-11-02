@@ -15,16 +15,19 @@ datasource db {
 }
 
 model Cart {
-  id          Int      @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   productId   Int
   amount      Int
   description String
-  createdAt   DateTime @default(now())
+
+  @@map("Cart")
 }
 
 model Category {
   id   Int    @id @default(autoincrement())
   name String
+
+  @@map("Category")
 }
 
 model Product {
@@ -35,4 +38,6 @@ model Product {
   isReady  Boolean
   image    String
   category Json
+
+  @@map("Product")
 }

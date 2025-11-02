@@ -1,60 +1,56 @@
 'use strict';
 
 import 'dotenv/config';
+import Hapi from '@hapi/hapi';
 
-import cartPlugin from "./api/cart";
-import categoryPlugin from "./api/category";
-import productPlugin from "./api/product";
+import cartPlugin from './api/cart';
+import categoryPlugin from './api/category';
+import productPlugin from './api/product';
 
-const Hapi = require('@hapi/hapi');
+import CartService from './services/CartService';
+import CartValidator from './validators/CartValidator';
 
-const cartService = require("./services/CartService");
-const cartValidator = require("./validators/CartValidator");
+import CategoryService from './services/CategoryService';
+import CategoryValidator from './validators/CategoryValidator';
 
-const categoryService = require("./services/CategoryService");
-const categoryValidator = require("./validators/CategoryValidator");
-
-const productService = require("./services/ProductService");
-const productValidator = require("./validators/ProductValidator");
+import ProductService from './services/ProductService';
+import ProductValidator from './validators/ProductValidator';
 
 const init = async () => {
+    const cartService = new CartService();
+    const categoryService = new CategoryService();
+    const productService = new ProductService();
 
-    const CartService = new cartService();
-    const CategoryService = new categoryService();
-    const ProductService = new productService();
+    const cartValidator = new CartValidator();
+    const categoryValidator = new CategoryValidator();
+    const productValidator = new ProductValidator();
 
     const server = Hapi.server({
         port: 3000,
         host: 'localhost',
-        routes: {
-            cors: {
-                origin: ['*'],
-            },
-        },
+        routes: { cors: { origin: ['*'] } },
     });
-
-    // const prisma = new PrismaClient()
 
     await server.register([
         {
             plugin: cartPlugin,
-            options: { service: CartService, validator: cartValidator },
-            routes: { prefix: '/cart' }
+            options: { service: cartService, validator: cartValidator },
+            routes: { prefix: '/cart' },
         },
         {
             plugin: categoryPlugin,
-            options: { service: CategoryService, validator: categoryValidator },
-            routes: { prefix: '/category' }
+            options: { service: categoryService, validator: categoryValidator },
+            routes: { prefix: '/category' },
         },
         {
             plugin: productPlugin,
-            options: { service: ProductService, validator: productValidator },
-            routes: { prefix: '/product' }
+            options: { service: productService, validator: productValidator },
+            routes: { prefix: '/product' },
         },
     ]);
 
     await server.start();
-    console.log('Server is running on %s', server.info.uri);
+    console.log('✅ Server is running on %s', server.info.uri);
 };
 
 init();
