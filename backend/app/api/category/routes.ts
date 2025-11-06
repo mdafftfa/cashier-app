@@ -7,4 +7,9 @@ export const routes = (controllerInstance: Controller): ServerRoute[] => [
         path: '/getAllCategoryData',
         handler: controllerInstance.getAllCategoryData.bind(controllerInstance),
     },
+    {
+        method: 'GET' as const,
+        path: '/getCategoryById',
+        handler: controllerInstance.getCategoryById.bind(controllerInstance),
+    },
 ];
