@@ -29,42 +29,31 @@ export default class controller {
 
     async addProductToCart(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
         try {
-            const { name, price, description } = request.query as {
-                name: string;
-                price: number;
-                amount: number;
-                totalPrice: number;
-                description: string;
-            };
+            const payload = this._validator.validateAddToCart(request.query);
 
             await this._service.addProductToCart(
-                name,
-                price,
-                1,
-                description
+                payload.name,
+                payload.price,
+                payload.amount,
+                payload.description
             );
 
-            return h.response({
-                status: "success",
-            });
+            return h.response({ status: "success" }).code(200);
         } catch (error: any) {
-            console.log(error.message);
+            console.error(error.message);
             return h.response({
                 status: "error",
                 message: error.message || "Failed to add to cart",
-            }).code(500);
+            }).code(400);
         }
     }
 
+
     async updateCartData(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
         try {
-            const { id, amount, description } = request.query as {
-                id: number;
-                amount: number;
-                description: string;
-            };
+            const payload = this._validator.validateUpdateCart(request.query);
 
-            await this._service.updateCartData(Number(id), Number(amount), description);
+            await this._service.updateCartData(Number(payload.id), Number(payload.amount), payload.description);
             return h.response({
                 message: "success"
             }).code(200);
@@ -77,11 +66,9 @@ export default class controller {
 
     async deleteCartData(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
         try {
-            const { id } = request.query as {
-                id: number;
-            };
+            const payload = this._validator.validateDeleteCart(request.query);
 
-            await this._service.deleteCartData(Number(id));
+            await this._service.deleteCartData(Number(payload.id));
             return h.response({
                 message: "success"
             }).code(200);

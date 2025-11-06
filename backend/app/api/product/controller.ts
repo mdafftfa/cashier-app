@@ -26,8 +26,8 @@ export default class Controller {
     
     async getAllProductDataByCategoryId(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
         try {
-            const categoryId = Number(request.query.categoryId);
-            const product = await this._service.getAllByCategoryId(categoryId);
+            const payload = this._validator.validateGetAllProductDataByCategoryId(request.query);
+            const product = await this._service.getAllByCategoryId(payload.categoryId);
             return h.response({
                 status: "Success",
                 data: product,

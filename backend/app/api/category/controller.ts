@@ -29,8 +29,8 @@ export default class Controller {
 
     async getCategoryById(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
         try {
-            const categoryId = Number(request.query.categoryId);
-            const category = await this._service.getCategoryById(categoryId);
+            const payload = this._validator.validateGetCategoryById(request.query);
+            const category = await this._service.getCategoryById(payload.categoryId);
             return h.response({
                 status: "Success",
                 data: category,
