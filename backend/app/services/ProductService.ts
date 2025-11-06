@@ -9,7 +9,15 @@ export default class ProductService {
     }
 
     async getAll() {
-        return this.prisma.product.findMany();
+        return await this.prisma.product.findMany();
+    }
+
+    async getAllByCategoryId(categoryId: number) {
+        return await this.prisma.product.findMany({
+            where: {
+                categoryId: categoryId
+            },
+        });
     }
 
 }
