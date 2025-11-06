@@ -3,10 +3,14 @@ import {ColorModeIcon, useColorMode} from "@/components/ui/color-mode.tsx";
 import {GrCurrency, GrLanguage} from "react-icons/gr";
 import Indonesia from "@/assets/icons/indonesia.png";
 import USA from "@/assets/icons/united-states-of-america.png";
+import Languages from "@/utils/enums/Languages.ts";
+import {useAppContext} from "@/context/AppContext.tsx";
+import Currencies from "@/utils/enums/Currencies.ts";
 
-export default function Navbar () {
+export default function Navbar() {
 
     const { toggleColorMode } = useColorMode();
+    const { language, setLanguage, currency, setCurrency } = useAppContext();
 
     return (
         <Card.Root p={"5"} layerStyle={""}>
@@ -22,19 +26,19 @@ export default function Navbar () {
                             <Menu.Trigger asChild>
                                 <Button variant={"surface"}>
                                     <GrCurrency />
-                                    IDR
+                                    {currency}
                                 </Button>
                             </Menu.Trigger>
                             <Portal>
                                 <Menu.Positioner>
                                     <Menu.Content fontSize={"lg"} layerStyle={"fill.surface"}>
-                                        <Menu.Item display={"flex"} alignItems={"center"} value="new-fileasd" >
+                                        <Menu.Item onClick={() => setCurrency(Currencies.USD)} display={"flex"} alignItems={"center"} value="new-fileasd" >
                                             <Box layerStyle={"fill.solid"} rounded={"sm"} px={"1"}>
                                                 $
                                             </Box>
                                             USD
                                         </Menu.Item>
-                                        <Menu.Item display={"flex"} alignItems={"center"} value="new-file" >
+                                        <Menu.Item onClick={() => setCurrency(Currencies.IDR)} display={"flex"} alignItems={"center"} value="new-file" >
                                             <Box layerStyle={"fill.solid"} rounded={"sm"} px={"1"}>
                                                 Rp
                                             </Box>
@@ -49,20 +53,20 @@ export default function Navbar () {
                             <Menu.Trigger asChild>
                                 <Button variant={"surface"}>
                                     <GrLanguage />
-                                    ID / ID
+                                    {language === Languages.ENGLISH ? "EN / US  " : "ID / ID"}
                                 </Button>
                             </Menu.Trigger>
                             <Portal>
                                 <Menu.Positioner>
                                     <Menu.Content fontSize={"lg"} layerStyle={"fill.surface"}>
-                                        <Menu.Item value="new-txt" display={"flex"} alignItems={"center"}>
+                                        <Menu.Item onClick={() => setLanguage(Languages.ENGLISH)} value="new-txt" display={"flex"} alignItems={"center"}>
                                             <Avatar.Root size={"sm"}>
                                                 <Avatar.Fallback name="U S" />
                                                 <Avatar.Image src={USA} />
                                             </Avatar.Root>
                                             EN / US
                                         </Menu.Item>
-                                        <Menu.Item value="new-file" display={"flex"} alignItems={"center"}>
+                                        <Menu.Item onClick={() => setLanguage(Languages.INDONESIA)} value="new-file" display={"flex"} alignItems={"center"}>
                                             <Avatar.Root size={"sm"}>
                                                 <Avatar.Fallback name="I D" />
                                                 <Avatar.Image src={Indonesia} />
@@ -77,5 +81,6 @@ export default function Navbar () {
                 </Flex>
             </Card.Title>
         </Card.Root>
-    )
+    );
+
 }

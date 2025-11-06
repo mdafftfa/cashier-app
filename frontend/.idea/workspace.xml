@@ -4,17 +4,72 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad9afc5-55f1-4825-a8d7-a30001eeadb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/frontend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="2ad9afc5-55f1-4825-a8d7-a30001eeadb0" name="Changes" comment="feat: Implementing Category.tsx component to ensure other components are working properly">
+      <change afterPath="$PROJECT_DIR$/../backend/app/api/order/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/20251103092918_refactor_product_category/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/20251103201942_init/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/20251103202428_make_categoryid_optional/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/20251105124617_init/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/20251105131650_init/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/20251105184555_init/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/20251106153458_init/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/prisma/migrations/20251106153630_init/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/validators/OrderValidator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/context/AppContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/lang.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/assets.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/yaml.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/CurrencyTranslator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/LangTranslator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/enums/Currencies.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/enums/Languages.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/eventBus.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/cart/controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/cart/controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/cart/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/cart/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/cart/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/cart/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/category/controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/category/controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/category/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/category/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/category/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/product/controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/product/controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/product/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/product/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/product/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/product/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/services/CategoryService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/services/CategoryService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/services/ProductService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/services/ProductService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/validators/ProductValidator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/validators/ProductValidator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/cemilan/cheese-burger.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/snacks/cheese-burger.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/cemilan/kentang-goreng.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/snacks/kentang-goreng.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/cemilan/pangsit.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/snacks/pangsit.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/makanan/bakso.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/foods/bakso.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/makanan/lontong-opor-ayam.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/foods/lontong-opor-ayam.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/makanan/mie-ayam-bakso.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/foods/mie-ayam-bakso.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/makanan/mie-goreng.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/foods/mie-goreng.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/makanan/nasi-ayam-geprek.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/foods/nasi-ayam-geprek.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/makanan/nasi-goreng-telor.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/foods/nasi-goreng-telor.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/makanan/nasi-rames.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/foods/nasi-rames.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/makanan/sate-ayam.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/foods/sate-ayam.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/minuman/coffe-late.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/drinks/coffe-late.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/minuman/es-jeruk.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/drinks/es-jeruk.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/minuman/es-teh.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/drinks/es-teh.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/minuman/teh-hangat.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/drinks/teh-hangat.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/layouts/Cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Cart.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/layouts/Category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Category.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Product.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modals/CartPortal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modals/CartPortal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Success.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Success.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vite-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/vite-env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +80,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
+        <option value="tsconfig.json" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -65,10 +121,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\daffa\PENS\Semester 3\Workshop Pemrograman Web\cashier-app\frontend\src\assets\icons" />
-      <recent name="D:\daffa\PENS\Semester 3\Workshop Pemrograman Web\cashier-app\frontend\src\assets" />
-      <recent name="D:\daffa\PENS\Semester 3\Workshop Pemrograman Web\cashier-app\frontend\src\components\layouts" />
-      <recent name="D:\daffa\PENS\Semester 3\Workshop Pemrograman Web\cashier-app\frontend\src\components" />
+      <recent name="D:\daffa\PENS\Semester 3\Workshop Pemrograman Web\cashier-app\frontend\src\utils\enums" />
+      <recent name="D:\daffa\PENS\Semester 3\Workshop Pemrograman Web\cashier-app\frontend\src\utils" />
+      <recent name="D:\daffa\PENS\Semester 3\Workshop Pemrograman Web\cashier-app\frontend\src\enums" />
+      <recent name="D:\daffa\PENS\Semester 3\Workshop Pemrograman Web\cashier-app\frontend\src" />
+      <recent name="D:\daffa\PENS\Semester 3\Workshop Pemrograman Web\cashier-app\frontend\public" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm dev">
@@ -127,8 +184,24 @@
       <workItem from="1761998484660" duration="593000" />
       <workItem from="1761999149658" duration="1167000" />
       <workItem from="1762000652694" duration="2282000" />
-      <workItem from="1762111750156" duration="9296000" />
+      <workItem from="1762111750156" duration="9666000" />
+      <workItem from="1762156091427" duration="10357000" />
+      <workItem from="1762192340715" duration="229000" />
+      <workItem from="1762192580287" duration="18640000" />
+      <workItem from="1762257966677" duration="3632000" />
+      <workItem from="1762261647375" duration="4311000" />
+      <workItem from="1762328853327" duration="44425000" />
+      <workItem from="1762436963937" duration="8500000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: Implementing Category.tsx component to ensure other components are working properly">
+      <option name="closed" value="true" />
+      <created>1762126894759</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762126894759</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,5 +209,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="feat: Implementing Category.tsx component to ensure other components are working properly" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Implementing Category.tsx component to ensure other components are working properly" />
   </component>
 </project>

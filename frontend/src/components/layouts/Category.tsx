@@ -1,6 +1,10 @@
-import {Component} from "react";
-import {Button, Card, Heading, Separator} from "@chakra-ui/react";
+import { Component } from "react";
+import { Button, Card, Grid, Heading, Separator } from "@chakra-ui/react";
 import axios from "axios";
+import LangTranslator from "@/utils/LangTranslator.ts";
+import Languages from "@/utils/enums/Languages";
+import { AppContext } from "@/context/AppContext";
+import {eventBus} from "@/utils/eventBus.ts";
 
 interface CategoryItem {
     id: number;
@@ -13,6 +17,8 @@ interface CategoryState {
 }
 
 export default class Category extends Component<{}, CategoryState> {
+    static contextType = AppContext;
+    declare context: React.ContextType<typeof AppContext>;
 
     constructor(props: any) {
         super(props);
@@ -22,51 +28,53 @@ export default class Category extends Component<{}, CategoryState> {
         };
     }
 
-    getAllCategoryData = async () => {
-        try {
-            const response = await axios.get("http://localhost:3000/category/getAllCategoryData");
-            const { data } = response.data;
-            this.setState({ categories: data });
-        } catch (error) {
-            console.error("Failed to fetch category data:", error);
-        }
-    };
-
     async componentDidMount() {
-        await this.getAllCategoryData();
-        this.setState({ selectedCategoryId: 1 });
+        const response = await axios.get(`${process.env.VITE_API_URL}/category/getAllCategoryData`);
+        const { data } = response.data;
+        this.setState({ categories: data, selectedCategoryId: 1 });
     }
-    
-    changeCategory = (id: number) => {
-        this.setState({ selectedCategoryId: id });
-        console.log("Selected category ID:", id);
-    };
 
     render() {
-
         const { categories, selectedCategoryId } = this.state;
 
+        const language = this.context?.language ?? Languages.INDONESIA;
+        const translator = new LangTranslator(language);
+
         return (
-            <Card.Root layerStyle={""} width="full">
+            <Card.Root width="full">
                 <Card.Header>
-                    <Heading fontWeight={"semibold"}>Categories</Heading>
+                    <Heading fontWeight="semibold">
+                        {translator.translate("categories.title")}
+                    </Heading>
                     <Separator />
                 </Card.Header>
                 <Card.Body>
-                    {categories.length > 0 ? (
-                        categories.map((category) => (
-                            <Button key={category.id} variant={selectedCategoryId === category.id ? "solid" : "outline"} onClick={() => this.changeCategory(category.id)} size="xl">
-                                {category.name}
+                    <Grid gap="2.5">
+                        {categories.length > 0 ? (
+                            categories.map((category) => {
+                                const translatedName = translator.translate(`categories.${category.name.toLowerCase()}`);
+                                return (
+                                    <Button
+                                        key={category.id}
+                                        variant={selectedCategoryId === category.id ? "solid" : "outline"}
+                                        onClick={() => {
+                                            this.setState({ selectedCategoryId: category.id });
+                                            eventBus.emit("categoryChange", category.id);
+                                        }}
+                                        size="xl"
+                                    >
+                                        {translatedName}
+                                    </Button>
+                                );
+                            })
+                        ) : (
+                            <Button variant="outline" size="xl">
+                                Loading...
                             </Button>
-                        ))
-                    ) : (
-                        <Button variant="outline" size="xl">
-                            Loading...
-                        </Button>
-                    )}
+                        )}
+                    </Grid>
                 </Card.Body>
             </Card.Root>
         );
     }
-
 }

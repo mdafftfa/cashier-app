@@ -1,0 +1,74 @@
+English:
+  categories:
+    title: Categories
+    makanan: Foods
+    minuman: Drinks
+    cemilan: Snacks
+    category: Categories
+
+  products:
+    title: Products
+
+    Sate Ayam: Chicken Satay
+    Nasi Goreng Telur: Fried Rice with Egg
+    Nasi Rames: Mixed Rice
+    Lontong Opor Ayam: Rice Cake with Chicken Curry
+    Mie Goreng: Fried Noodles
+    Bakso: Meatballs
+    Mie Ayam Bakso: Chicken Noodles with Meatballs
+
+    Coffe Late: Coffee Latte
+    Es Jeruk: Iced Orange Juice
+    Es Teh: Iced Tea
+    Teh Hangat: Hot Tea
+
+    Pangsit 6 pcs: Fried Dumplings (6 pcs)
+    Kentang Goreng: French Fries
+    Cheese Burger: Cheeseburger
+
+  carts:
+    title: Order Details
+    no-orders: No orders available
+    total-price: Total Price
+    pay: PAY
+    amount: Amount
+    description: Description
+    save: Save
+    delete: Delete
+
+Indonesia:
+  categories:
+    title: Kategori
+    makanan: Makanan
+    minuman: Minuman
+    cemilan: Cemilan
+
+  products:
+    title: Produk
+
+    Sate Ayam: Sate Ayam
+    Nasi Goreng Telur: Nasi Goreng Telur
+    Nasi Rames: Nasi Rames
+    Lontong Opor Ayam: Lontong Opor Ayam
+    Mie Goreng: Mie Goreng
+    Bakso: Bakso
+    Mie Ayam Bakso: Mie Ayam Bakso
+
+    Coffe Late: Kopi Late
+    Es Jeruk: Es Jeruk
+    Es Teh: Es Teh
+    Teh Hangat: Teh Hangat
+
+    Pangsit 6 pcs: Pangsit 6 pcs
+    Kentang Goreng: Kentang Goreng
+    Cheese Burger: Cheese Burger
+
+  carts:
+    title: Rincian Pesanan
+    no-orders: Tidak ada pesanan yang tersedia
+    total-price: Total Harga
+    pay: BAYAR
+    amount: Jumlah
+    description: Keterangan
+    save: Simpan
+    delete: Hapus

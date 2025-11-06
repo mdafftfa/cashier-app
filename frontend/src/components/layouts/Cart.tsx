@@ -13,11 +13,19 @@ import {
 import CartPortal from "@/components/modals/CartPortal.tsx";
 import {LuChevronLeft, LuChevronRight} from "react-icons/lu";
 import {PiTrolleyFill} from "react-icons/pi";
+import Languages from "@/utils/enums/Languages.ts";
+import LangTranslator from "@/utils/LangTranslator.ts";
+import {AppContext} from "@/context/AppContext.tsx";
+import axios from "axios";
+import Currencies from "@/utils/enums/Currencies.ts";
+import CurrencyTranslator from "@/utils/CurrencyTranslator.ts";
+import {eventBus} from "@/utils/eventBus.ts";
 
 interface ProductItem {
     id: number;
     name: string;
     price: number;
+    totalPrice: number;
     amount: number;
     description: string
 }
@@ -30,6 +38,9 @@ interface ProductState {
 }
 
 export default class Cart extends Component<{}, ProductState> {
+
+    static contextType = AppContext;
+    declare context: React.ContextType<typeof AppContext>;
 
     constructor(props: {}) {
         super(props);
@@ -49,24 +60,53 @@ export default class Cart extends Component<{}, ProductState> {
         this.setState({ selectedProduct: product });
     };
 
-    addToCart = (product: ProductItem) => {
-        this.setState(prev => ({
-            products: [...prev.products, product]
-        }));
+    getAllCartData = async () => {
+        try {
+            const response = await axios.get(`${process.env.VITE_API_URL}/cart/getAllCartData`);
+            const products = Array.isArray(response.data)
+                ? response.data
+                : response.data.data;
+
+            this.setState({ products: products || [] });
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    }
+
+    createOrder = async () => {
+        try {
+            await axios.post(`${process.env.VITE_API_URL}/order/addProductData`);
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    }
+
+    componentDidMount() {
+        this.getAllCartData();
+        eventBus.on("cartUpdated", () => {
+            this.getAllCartData();
+
+        });
     }
 
     render() {
+        const language = this.context?.language ?? Languages.INDONESIA;
+        const currency = this.context?.currency ?? Currencies.IDR;
+        const currencyTranslator = new CurrencyTranslator(currency);
+        const langTranslator = new LangTranslator(language);
 
         const { products, currentPage, pageSize } = this.state;
         const totalPages = Math.ceil(products.length / pageSize);
         const start = (currentPage - 1) * pageSize;
         const currentProducts = products.slice(start, start + pageSize);
-        const totalPrice = currentProducts.map((product) => product.price);
+        const totalPrice = currentProducts.reduce((sum, product) => {
+            return sum + product.totalPrice;
+        }, 0);
 
         return (
             <Card.Root layerStyle={"fill.surface"} width="full" height={"3xl"}>
                 <Card.Header>
-                    <Heading fontSize={"2xl"} fontWeight={"semibold"}>Order Details</Heading>
+                    <Heading fontSize={"2xl"} fontWeight={"semibold"}>{langTranslator.translate("carts.title")}</Heading>
                     <Separator />
                 </Card.Header>
                 <Card.Body>
@@ -74,29 +114,31 @@ export default class Cart extends Component<{}, ProductState> {
                         <Dialog.Trigger asChild>
                             <Grid>
                                 {products.length < 1 && (
-                                    <Text>No orders available</Text>
+                                    <Text>{langTranslator.translate("carts.no-orders")}</Text>
                                 )}
-                                {currentProducts.map((product) => {
-                                    return (
-                                        <Link display="block" rounded="sm" p="2.5" layerStyle={"fill.surface"} onClick={() => this.selectProduct(product)} >
-                                            <Flex alignItems="center" justify="space-between">
-                                                <Flex alignItems="center" gap="2.5">
-                                                    <Box layerStyle="fill.muted" fontSize="md" fontWeight="semibold" rounded="sm" px="2.5" py="1">
-                                                        {product.amount}
-                                                    </Box>
-                                                    <Grid>
-                                                        <Text fontSize="md" fontWeight="semibold">{product.name}</Text>
-                                                        <Text fontSize="sm">{product.price.toLocaleString()} IDR</Text>
-                                                    </Grid>
+                                <Grid gap={"2.5"}>
+                                    {currentProducts.map((product) => {
+                                        return (
+                                            <Link display="block" rounded="sm" p="2.5" layerStyle={"fill.surface"} onClick={() => this.selectProduct(product)} >
+                                                <Flex alignItems="center" justify="space-between">
+                                                    <Flex alignItems="center" gap="2.5">
+                                                        <Box layerStyle="fill.muted" fontSize="md" fontWeight="semibold" rounded="sm" px="2.5" py="1">
+                                                            {product.amount}
+                                                        </Box>
+                                                        <Grid>
+                                                            <Text fontSize="md" fontWeight="semibold">{langTranslator.translate(`products.${product.name}`)}</Text>
+                                                            <Text fontSize="sm">{currencyTranslator.translate(product.price).toLocaleString()} {currency}</Text>
+                                                        </Grid>
+                                                    </Flex>
+                                                    <Text fontSize="md" fontWeight="bold">{currencyTranslator.translate(product.price * product.amount).toLocaleString()} {currency}</Text>
                                                 </Flex>
-                                                <Text fontSize="md" fontWeight="bold">{totalPrice} IDR</Text>
-                                            </Flex>
-                                        </Link>
-                                    );
-                                })}
+                                            </Link>
+                                        );
+                                    })}
+                                </Grid>
                             </Grid>
                         </Dialog.Trigger>
-                        <CartPortal product={this.state.selectedProduct} />
+                        <CartPortal product={this.state.selectedProduct} onClose={() => this.setState({ selectedProduct: undefined })} />
                     </Dialog.Root>
 
                 </Card.Body>
@@ -126,14 +168,14 @@ export default class Cart extends Component<{}, ProductState> {
                         </Pagination.Root>
                     )}
                     <Flex justify={"space-between"}>
-                        <Text fontWeight={"light"} fontSize={"2xl"}>Total Price:</Text>
+                        <Text fontWeight={"light"} fontSize={"2xl"}>{langTranslator.translate("carts.total-price")}:</Text>
                         <Text fontWeight={"extrabold"} fontSize={"2xl"}>
-                            {products.length === 0 ? "0 IDR" :   `${totalPrice} IDR`}
+                            {products.length === 0 ? `0 ${currency}` :   `${currencyTranslator.translate(Number(totalPrice)).toLocaleString()} ${currency}`}
                         </Text>
                     </Flex>
-                    <Button variant={"solid"} backgroundColor={"teal.500"} size={"2xl"} fontSize={"2xl"}>
+                    <Button onClick={this.createOrder} variant={"solid"} backgroundColor={"teal.500"} size={"2xl"} fontSize={"2xl"}>
                         <PiTrolleyFill />
-                        PAY
+                        {langTranslator.translate("carts.pay")}
                     </Button>
                 </Card.Footer>
             </Card.Root>

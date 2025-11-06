@@ -11,5 +11,5 @@ export default class Success extends Component {
             <label>asd</label>
         );
     }
-
+    
 }
