@@ -75,7 +75,9 @@ export default class Cart extends Component<{}, ProductState> {
 
     createOrder = async () => {
         try {
-            await axios.post(`${process.env.VITE_API_URL}/order/addProductData`);
+            await axios.post(`${process.env.VITE_API_URL}/order/addOrderData`);
+            eventBus.emit("cartUpdated");
+            window.location.href = "http://localhost:5173/success";
         } catch (error: any) {
             console.log(error.message);
         }
@@ -106,10 +108,29 @@ export default class Cart extends Component<{}, ProductState> {
         return (
             <Card.Root layerStyle={"fill.surface"} width="full" height={"3xl"}>
                 <Card.Header>
-                    <Heading fontSize={"2xl"} fontWeight={"semibold"}>{langTranslator.translate("carts.title")}</Heading>
+                    <Flex alignItems={"center"} justify={"space-between"}>
+                        <Heading fontSize={"2xl"} fontWeight={"semibold"}>{langTranslator.translate("carts.title")}</Heading>
+                        {products.length > 6 && (
+                            <Pagination.Root count={products.length} pageSize={pageSize} page={currentPage} onPageChange={(e) => this.setPage(e.page)}>
+                                <ButtonGroup gap="4" size="sm" variant="ghost">
+                                    <Pagination.PrevTrigger asChild>
+                                        <IconButton onClick={() => this.setPage(Math.max(1, currentPage - 1))}>
+                                            <LuChevronLeft />
+                                        </IconButton>
+                                    </Pagination.PrevTrigger>
+                                    <Pagination.PageText fontSize="sm" fontWeight="medium" />
+                                    <Pagination.NextTrigger asChild>
+                                        <IconButton onClick={() => this.setPage(Math.min(totalPages, currentPage + 1))}>
+                                            <LuChevronRight />
+                                        </IconButton>
+                                    </Pagination.NextTrigger>
+                                </ButtonGroup>
+                            </Pagination.Root>
+                        )}
+                    </Flex>
                     <Separator />
                 </Card.Header>
-                <Card.Body>
+                <Card.Body maxHeight={""}>
                     <Dialog.Root>
                         <Dialog.Trigger asChild>
                             <Grid>
@@ -144,29 +165,7 @@ export default class Cart extends Component<{}, ProductState> {
                 </Card.Body>
                 <Card.Footer display={"grid"} gap={"5"}>
                     <Separator />
-                    {products.length > 6 && (
-                        <Pagination.Root count={totalPages} pageSize={1}>
-                            <ButtonGroup variant="ghost" size="sm">
-                                <Pagination.PrevTrigger asChild>
-                                    <IconButton onClick={() => this.setPage(Math.max(1, currentPage - 1))}>
-                                        <LuChevronLeft />
-                                    </IconButton>
-                                </Pagination.PrevTrigger>
 
-                                {Array.from({ length: totalPages }).map((_, i) => (
-                                    <IconButton key={i} variant={i + 1 === currentPage ? "solid" : "outline"} onClick={() => this.setPage(i + 1)}>
-                                        {i + 1}
-                                    </IconButton>
-                                ))}
-
-                                <Pagination.NextTrigger asChild>
-                                    <IconButton onClick={() => this.setPage(Math.min(totalPages, currentPage + 1))}>
-                                        <LuChevronRight />
-                                    </IconButton>
-                                </Pagination.NextTrigger>
-                            </ButtonGroup>
-                        </Pagination.Root>
-                    )}
                     <Flex justify={"space-between"}>
                         <Text fontWeight={"light"} fontSize={"2xl"}>{langTranslator.translate("carts.total-price")}:</Text>
                         <Text fontWeight={"extrabold"} fontSize={"2xl"}>

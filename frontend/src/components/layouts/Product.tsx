@@ -39,6 +39,7 @@ interface ProductState {
 
 interface ProductProps {
     onAdd: (product: { id: number; name: string; price: number; image: string }) => void;
+    navigate?: (path: string) => void;
 }
 
 export default class Product extends Component<ProductProps, ProductState> {
@@ -111,6 +112,7 @@ export default class Product extends Component<ProductProps, ProductState> {
         try {
             await axios.post(`${process.env.VITE_API_URL}/cart/addProductToCart?name=${product.name}&price=${product.price}&amount=1&description`);
             eventBus.emit("cartUpdated");
+            this.props.navigate?.("/success");
         } catch (error: any) {
             console.log(error.message);
         }

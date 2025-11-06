@@ -87,7 +87,6 @@ export default class CartPortal extends Component<CartPortalProps, CartPortalSta
         const currencyTranslator = new CurrencyTranslator(currency);
         const langTranslator = new LangTranslator(language);
 
-
         const totalPrice = (product.price * product.amount);
 
         return (

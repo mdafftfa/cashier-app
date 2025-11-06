@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251101131545_init/migration.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251102203528_init/migration.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251102204017_init/migration.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251103092918_refactor_product_category/migration.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251103201942_init/migration.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251103202428_make_categoryid_optional/migration.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251105124617_init/migration.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251105131650_init/migration.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251105184555_init/migration.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251106153458_init/migration.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/prisma/migrations/20251106153630_init/migration.sql" dialect="GenericSQL" />
+  </component>
+</project>

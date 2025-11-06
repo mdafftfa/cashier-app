@@ -36,6 +36,11 @@ English:
     save: Save
     delete: Delete
 
+  success:
+    title: Order Successful
+    description: Thank you for your order!
+    back: Back
+
 Indonesia:
   categories:
     title: Kategori
@@ -72,3 +77,8 @@ Indonesia:
     description: Keterangan
     save: Simpan
     delete: Hapus
+
+  success:
+    title: Sukses Pesan
+    description: Terimakasih Sudah Memesan!
+    back: Kembali
