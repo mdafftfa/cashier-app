@@ -9,7 +9,15 @@ export default class CategoryService {
     }
 
     async getAll() {
-        return this.prisma.category.findMany();
+        return await this.prisma.category.findMany();
     }
 
+    async getCategoryById(categoryId: number) {
+        return await this.prisma.category.findMany({
+            where: {
+                id: categoryId
+            }
+        });
+    }
+    
 }
