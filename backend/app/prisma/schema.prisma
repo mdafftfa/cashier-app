@@ -16,28 +16,38 @@ datasource db {
 
 model Cart {
   id          Int    @id @default(autoincrement())
-  productId   Int
+  name        String
+  price       Int
   amount      Int
+  totalPrice  Int
   description String
 
   @@map("Cart")
 }
 
 model Category {
-  id   Int    @id @default(autoincrement())
-  name String
+  id      Int       @id @default(autoincrement())
+  name    String
+  Product Product[]
 
   @@map("Category")
 }
 
 model Product {
-  id       Int     @id @default(autoincrement())
-  code     String
-  name     String
-  price    Int
-  isReady  Boolean
-  image    String
-  category Json
+  id         Int      @id @default(autoincrement())
+  code       String
+  name       String
+  price      Int
+  isReady    Boolean
+  image      String
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id])
 
   @@map("Product")
+}
+
+model Orders {
+  id         Int  @id @default(autoincrement())
+  TotalPrice Int
+  Products   Json
 }
