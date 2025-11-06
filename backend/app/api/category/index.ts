@@ -2,11 +2,12 @@ import * as Hapi from "@hapi/hapi";
 import Controller from "./controller";
 import { routes } from "./routes";
 import CategoryService from "@services/CategoryService";
+import CategoryValidator from "@validators/CategoryValidator";
 
 export const categoryPlugin = {
     name: 'category',
     version: '1.0.0',
-    register: async (server: Hapi.Server, options: { validator: any }) => {
+    register: async (server: Hapi.Server, options: { validator: CategoryValidator }) => {
         const service = new CategoryService();
         const controllerInstance = new Controller(service, options.validator);
         server.route(routes(controllerInstance));

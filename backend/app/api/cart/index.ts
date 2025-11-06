@@ -2,11 +2,12 @@ import * as Hapi from "@hapi/hapi";
 import Controller from "./controller";
 import { routes } from "./routes";
 import CartService from "@services/CartService";
+import CartValidator from "@validators/CartValidator";
 
 export const cartPlugin = {
     name: 'cart',
     version: '1.0.0',
-    register: async (server: Hapi.Server, options: { validator: any }) => {
+    register: async (server: Hapi.Server, options: { validator: CartValidator }) => {
         const service = new CartService();
         const controllerInstance = new Controller(service, options.validator);
         server.route(routes(controllerInstance));
