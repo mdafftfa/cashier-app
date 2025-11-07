@@ -109,9 +109,9 @@ export default class Cart extends Component<{}, ProductState> {
             <Card.Root layerStyle={"fill.surface"} width="full" height={"3xl"}>
                 <Card.Header>
                     <Flex alignItems={"center"} justify={"space-between"}>
-                        <Heading fontSize={"2xl"} fontWeight={"semibold"}>{langTranslator.translate("carts.title")}</Heading>
+                        <Heading maxW={products.length > 6 ? "36" : "full"} fontSize={"2xl"} fontWeight={"semibold"}>{langTranslator.translate("carts.title")}</Heading>
                         {products.length > 6 && (
-                            <Pagination.Root count={products.length} pageSize={pageSize} page={currentPage} onPageChange={(e) => this.setPage(e.page)}>
+                            <Pagination.Root maxW={"full"} count={products.length} pageSize={pageSize} page={currentPage} onPageChange={(e) => this.setPage(e.page)}>
                                 <ButtonGroup gap="4" size="sm" variant="ghost">
                                     <Pagination.PrevTrigger asChild>
                                         <IconButton onClick={() => this.setPage(Math.max(1, currentPage - 1))}>
