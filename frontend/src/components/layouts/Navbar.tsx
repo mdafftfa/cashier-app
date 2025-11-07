@@ -13,7 +13,7 @@ export default function Navbar() {
     const { language, setLanguage, currency, setCurrency } = useAppContext();
 
     return (
-        <Card.Root p={"5"} layerStyle={""}>
+        <Card.Root py={"5"} px={"8"} layerStyle={""}>
             <Card.Title>
                 <Flex justify={"space-between"}>
                     <Text display={"grid"} alignItems={"center"} fontWeight={"extrabold"} fontSize={"2xl"}>Cashier App</Text>
