@@ -15,6 +15,12 @@ export default class Controller {
     async addOrderData(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
         try {
             const order = await this._service.addOrderData();
+            if (order === false) {
+                return h.response({
+                    status: "Failed",
+                    message: "There is no order in cart please make new one!",
+                }).code(500);
+            }
             return h.response({
                 status: "Success",
                 data: order,

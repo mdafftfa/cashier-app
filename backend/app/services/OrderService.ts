@@ -8,8 +8,11 @@ export default class OrderService {
         this.prisma = new PrismaClient();
     }
 
-    async addOrderData() {
+    async addOrderData(): Promise<boolean> {
         const carts = await this.prisma.cart.findMany();
+        if (carts.length === 0) {
+            return false;
+        }
 
         const totalPrice = carts.reduce((sum, product) => sum + product.totalPrice, 0);
 
@@ -20,7 +23,8 @@ export default class OrderService {
             },
         });
 
-        return await this.prisma.cart.deleteMany();
+        await this.prisma.cart.deleteMany()
+        return true;
     }
 
 
