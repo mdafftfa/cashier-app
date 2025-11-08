@@ -2,80 +2,58 @@
 
 import 'dotenv/config';
 import Hapi from '@hapi/hapi';
+
 import Joi from 'joi';
 
 import cartPlugin from './api/cart';
 import categoryPlugin from './api/category';
 import productPlugin from './api/product';
 import orderPlugin from '@api/order';
+import * as process from "process";
 
-import CartService from './services/CartService';
-import CartValidator from './validators/CartValidator';
-
-import CategoryService from './services/CategoryService';
-import CategoryValidator from './validators/CategoryValidator';
-
-import ProductService from './services/ProductService';
-import ProductValidator from './validators/ProductValidator';
-
-import OrderService from '@services/OrderService';
-import OrderValidator from '@validators/OrderValidator';
+import {useApiKey} from "./security/ApiKey";
+import {useCors} from "./security/Cors";
+import {useCsrf} from "./security/Csrf";
+import {useRateLimiter} from "./security/RateLimiter";
+import {useScooter} from "./security/Scooter";
 
 const init = async () => {
 
-    const cartService = new CartService();
-    const categoryService = new CategoryService();
-    const productService = new ProductService();
-    const orderService = new OrderService();
-
-    const cartValidator = new CartValidator();
-    const categoryValidator = new CategoryValidator();
-    const productValidator = new ProductValidator();
-    const orderValidator = new OrderValidator();
-
     const server = Hapi.server({
-        port: 3000,
-        host: 'localhost',
-        routes: { cors: { origin: ['*'] } },
+        port: process.env.SERVER_PORT,
+        host: process.env.SERVER_HOST,
+        routes: { cors: { origin: [process.env.CLIENT_HOST] } },
     });
+
+    useApiKey(server);
+    useCors(server);
+    useCsrf(server);
+    useRateLimiter(server);
+    useScooter(server);
 
     server.validator(Joi);
 
     const plugins = [
-        { name: 'Cart', prefix: '/cart', plugin: cartPlugin, service: cartService, validator: cartValidator },
-        { name: 'Category', prefix: '/category', plugin: categoryPlugin, service: categoryService, validator: categoryValidator },
-        { name: 'Product', prefix: '/product', plugin: productPlugin, service: productService, validator: productValidator },
-        { name: 'Order', prefix: '/order', plugin: orderPlugin, service: orderService, validator: orderValidator },
+        { plugin: cartPlugin, prefix: '/cart' },
+        { plugin: categoryPlugin, prefix: '/category' },
+        { plugin: productPlugin, prefix: '/product' },
+        { plugin: orderPlugin, prefix: '/order' },
     ];
 
-    for (const { plugin, prefix, service, validator } of plugins) {
-        await server.register(
-            [
-                {
-                    plugin,
-                    options: { service, validator },
-                },
-            ],
-            { routes: { prefix } }
-        );
+    for (const { plugin, prefix } of plugins) {
+        await server.register({ plugin, routes: { prefix } });
     }
 
     await server.start();
-    console.log(`✅ Server is running on ${server.info.uri}`);
 
-    const routes = server.table().map((route) => {
-        const prefix = `/${route.path.split('/')[1]}`;
-        const pluginInfo = plugins.find((p) => p.prefix === prefix);
-        return {
-            Method: route.method.toUpperCase(),
-            Path: route.path,
-            Controller: pluginInfo?.service.constructor.name ?? 'Unknown',
-            Validator: pluginInfo?.validator.constructor.name ?? 'Unknown',
-        };
-    });
+    const routes = server.table().map((r) => ({
+        Method: r.method.toUpperCase(),
+        Path: r.path,
+    }));
 
     console.log('\n📋 Registered Routes:');
     console.table(routes);
+    console.log(`✅ Server is running on ${server.info.uri}`);
 };
 
 init().catch((err) => {

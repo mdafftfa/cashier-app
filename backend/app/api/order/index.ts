@@ -4,13 +4,14 @@ import { routes } from "./routes";
 import OrderService from "@services/OrderService";
 import OrderValidator from "@validators/OrderValidator";
 
-export const orderPlugin = {
-    name: 'order',
-    version: '1.0.0',
-    register: async (server: Hapi.Server, options: { validator: OrderValidator }) => {
+const orderPlugin: Hapi.Plugin<undefined> = {
+    name: "order",
+    version: "1.0.0",
+    register: async (server: Hapi.Server) => {
         const service = new OrderService();
-        const controllerInstance = new Controller(service, options.validator);
-        server.route(routes(controllerInstance));
+        const validator = new OrderValidator();
+        const controller = new Controller(service, validator);
+        server.route(routes(controller));
     },
 };
 

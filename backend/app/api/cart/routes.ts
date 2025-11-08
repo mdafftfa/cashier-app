@@ -12,7 +12,7 @@ export const routes = (controllerInstance: Controller): ServerRoute[] => [
         path: '/addProductToCart',
         handler: controllerInstance.addProductToCart.bind(controllerInstance),
         options: {
-            cors: true
+            cors: true,
         }
     },
     {

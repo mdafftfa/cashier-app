@@ -75,7 +75,20 @@ export default class Cart extends Component<{}, ProductState> {
 
     createOrder = async () => {
         try {
-            await axios.post(`${process.env.VITE_API_URL}/order/addOrderData`);
+            const csrfRes = await axios.get(`${process.env.VITE_API_URL}/csrf`, {
+                withCredentials: true
+            });
+            const token = csrfRes.data.token;
+
+            await axios.post(
+                `${process.env.VITE_API_URL}/order/addOrderData`,
+                {},
+                {
+                    headers: { 'X-CSRF-Token': token },
+                    withCredentials: true
+                }
+            );
+
             eventBus.emit("cartUpdated");
             window.location.href = "http://localhost:5173/success";
         } catch (error: any) {

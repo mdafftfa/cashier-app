@@ -110,13 +110,29 @@ export default class Product extends Component<ProductProps, ProductState> {
 
     addProductToCart = async (product: ProductItem) => {
         try {
-            await axios.post(`${process.env.VITE_API_URL}/cart/addProductToCart?name=${product.name}&price=${product.price}&amount=1&description`);
+            const csrfRes = await axios.get(`${process.env.VITE_API_URL}/csrf`, {
+                withCredentials: true
+            });
+
+            const token = csrfRes.data.token;
+
+            await axios.post(
+                `${process.env.VITE_API_URL}/cart/addProductToCart?name=${product.name}&price=${product.price}&amount=1&description`,
+                {},
+                {
+                    headers: { 'X-CSRF-Token': token },
+                    withCredentials: true
+                }
+            );
+
             eventBus.emit("cartUpdated");
             this.props.navigate?.("/success");
+
         } catch (error: any) {
-            console.log(error.message);
+            console.log(error.response?.data || error.message);
         }
-    }
+    };
+
 
     render() {
         const language = this.context?.language ?? Languages.INDONESIA;
