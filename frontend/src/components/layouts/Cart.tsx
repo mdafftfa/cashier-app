@@ -79,7 +79,7 @@ export default class Cart extends Component<{}, ProductState> {
                 withCredentials: true
             });
             const token = csrfRes.data.token;
-
+            
             await axios.post(
                 `${process.env.VITE_API_URL}/order/addOrderData`,
                 {},
