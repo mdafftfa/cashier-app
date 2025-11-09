@@ -1,16 +1,16 @@
 import { ServerRoute } from "@hapi/hapi";
-import Controller from "./controller";
+import Controller from "./handlers";
 
-export const routes = (controllerInstance: Controller): ServerRoute[] => [
+export const routes = (handlers: Controller): ServerRoute[] => [
     {
         method: 'GET' as const,
         path: '/getAllCartData',
-        handler: controllerInstance.getAllCartData.bind(controllerInstance),
+        handler: handlers.getAllCartData.bind(handlers),
     },
     {
         method: 'POST' as const,
         path: '/addProductToCart',
-        handler: controllerInstance.addProductToCart.bind(controllerInstance),
+        handler: handlers.addProductToCart.bind(handlers),
         options: {
             cors: true,
         }
@@ -18,7 +18,7 @@ export const routes = (controllerInstance: Controller): ServerRoute[] => [
     {
         method: 'PUT' as const,
         path: '/updateCartData',
-        handler: controllerInstance.updateCartData.bind(controllerInstance),
+        handler: handlers.updateCartData.bind(handlers),
         options: {
             cors: true
         }
@@ -26,6 +26,6 @@ export const routes = (controllerInstance: Controller): ServerRoute[] => [
     {
         method: 'DELETE' as const,
         path: '/deleteCartData',
-        handler: controllerInstance.deleteCartData.bind(controllerInstance),
+        handler: handlers.deleteCartData.bind(handlers),
     },
 ];

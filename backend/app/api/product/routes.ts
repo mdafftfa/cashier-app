@@ -1,15 +1,15 @@
 import { ServerRoute } from "@hapi/hapi";
-import Controller from "./controller";
+import Handlers from "./handlers";
 
-export const routes = (controllerInstance: Controller): ServerRoute[] => [
+export const routes = (handlers: Handlers): ServerRoute[] => [
     {
         method: 'GET' as const,
         path: '/getAllProductData',
-        handler: controllerInstance.getAllProductData.bind(controllerInstance),
+        handler: handlers.getAllProductData.bind(handlers),
     },
     {
         method: 'GET' as const,
         path: '/getAllProductDataByCategoryId',
-        handler: controllerInstance.getAllProductDataByCategoryId.bind(controllerInstance),
+        handler: handlers.getAllProductDataByCategoryId.bind(handlers),
     },
 ];

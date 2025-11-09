@@ -2,7 +2,7 @@ import {Request, ResponseObject, ResponseToolkit} from "@hapi/hapi";
 import CategoryService from "@services/CategoryService";
 import CategoryValidator from "@validators/CategoryValidator";
 
-export default class Controller {
+export default class Handlers {
 
     private _service: CategoryService;
     private _validator: CategoryValidator;

@@ -2,7 +2,7 @@ import {Request, ResponseObject, ResponseToolkit} from "@hapi/hapi";
 import OrderService from "@services/OrderService";
 import OrderValidator from "@validators/OrderValidator";
 
-export default class Controller {
+export default class Handlers {
 
     private _service: OrderService;
     private _validator: OrderValidator;

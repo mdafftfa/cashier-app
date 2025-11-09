@@ -2,7 +2,7 @@ import {Request, ResponseObject, ResponseToolkit} from "@hapi/hapi";
 import CartService from "@services/CartService";
 import CartValidator from "@validators/CartValidator";
 
-export default class controller {
+export default class handlers {
 
     private _service: CartService;
     private _validator: CartValidator;
@@ -48,12 +48,15 @@ export default class controller {
         }
     }
 
-
     async updateCartData(request: Request, h: ResponseToolkit): Promise<ResponseObject> {
         try {
             const payload = this._validator.validateUpdateCart(request.query);
 
-            await this._service.updateCartData(Number(payload.id), Number(payload.amount), payload.description);
+            await this._service.updateCartData(
+                Number(payload.id),
+                Number(payload.amount),
+                payload.description
+            );
             return h.response({
                 message: "success"
             }).code(200);
@@ -78,5 +81,4 @@ export default class controller {
             }).code(500);
         }
     }
-
 }

@@ -1,5 +1,5 @@
 import * as Hapi from "@hapi/hapi";
-import Controller from "./controller";
+import Handlers from "./handlers";
 import { routes } from "./routes";
 import ProductService from "@services/ProductService";
 import ProductValidator from "@validators/ProductValidator";
@@ -10,8 +10,8 @@ const productPlugin: Hapi.Plugin<undefined> = {
     register: async (server: Hapi.Server) => {
         const service = new ProductService();
         const validator = new ProductValidator();
-        const controller = new Controller(service, validator);
-        server.route(routes(controller));
+        const handlers = new Handlers(service, validator);
+        server.route(routes(handlers));
     },
 };
 

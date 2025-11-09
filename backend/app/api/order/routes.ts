@@ -1,11 +1,11 @@
 import { ServerRoute } from "@hapi/hapi";
-import Controller from "./controller";
+import Handlers from "./handlers";
 
-export const routes = (controllerInstance: Controller): ServerRoute[] => [
+export const routes = (handlers: Handlers): ServerRoute[] => [
     {
         method: 'POST' as const,
         path: '/addOrderData',
-        handler: controllerInstance.addOrderData.bind(controllerInstance),
+        handler: handlers.addOrderData.bind(handlers),
         options: {
             cors: true
         }
