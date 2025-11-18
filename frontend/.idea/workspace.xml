@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2ad9afc5-55f1-4825-a8d7-a30001eeadb0" name="Changes" comment="initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Cart.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,6 +132,8 @@
       <workItem from="1762556422556" duration="4911000" />
       <workItem from="1762603887951" duration="2231000" />
       <workItem from="1762708854578" duration="1625000" />
+      <workItem from="1762972668195" duration="8000" />
+      <workItem from="1763462203180" duration="1000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Implementing Category.tsx component to ensure other components are working properly">
       <option name="closed" value="true" />
